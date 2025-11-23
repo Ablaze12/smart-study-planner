@@ -1,0 +1,237 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #050816;
+  color: #f9fafb;
+}
+
+.hero {
+  padding: 1.5rem 2rem;
+  background: radial-gradient(circle at top left, #4f46e5, #111827 40%, #050816);
+  border-bottom: 1px solid rgba(156, 163, 175, 0.3);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 1.9rem;
+}
+
+.hero p {
+  margin: 0.25rem 0;
+}
+
+.tagline {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 1.5rem auto 3rem;
+  padding: 0 1rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(156, 163, 175, 0.6);
+  background: transparent;
+  color: #e5e7eb;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.tab-button.active {
+  background: linear-gradient(135deg, #6366f1, #14b8a6);
+  border-color: transparent;
+}
+
+.tab {
+  display: none;
+}
+
+.tab.active {
+  display: block;
+}
+
+.card {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(55, 65, 81, 0.8);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+input,
+select,
+textarea {
+  border-radius: 0.6rem;
+  border: 1px solid rgba(55, 65, 81, 0.9);
+  padding: 0.5rem 0.65rem;
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+  font-size: 0.9rem;
+}
+
+input[type="file"] {
+  padding: 0.3rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 1px solid #6366f1;
+  border-color: #6366f1;
+}
+
+.primary-btn,
+.secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #6366f1, #14b8a6);
+  color: white;
+}
+
+.secondary-btn {
+  background: rgba(17, 24, 39, 0.9);
+  border: 1px solid rgba(107, 114, 128, 0.9);
+  color: #e5e7eb;
+}
+
+.status {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.75rem;
+}
+
+.pre-json {
+  font-size: 0.75rem;
+  background: rgba(15, 23, 42, 0.9);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  max-height: 260px;
+}
+
+.weeks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.75rem;
+}
+
+.week-card {
+  border-radius: 0.9rem;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(55, 65, 81, 0.8);
+  padding: 0.6rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+.week-card h4 {
+  margin: 0 0 0.25rem;
+}
+
+.week-date {
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
+.qa-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+#questionsList,
+#flashcardsList,
+#todayFocusList {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#questionsList li,
+#flashcardsList li,
+#todayFocusList li {
+  padding: 0.4rem 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(55, 65, 81, 0.8);
+  margin-bottom: 0.3rem;
+  font-size: 0.85rem;
+}
+
+#assignmentsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+#assignmentsTable th,
+#assignmentsTable td {
+  border: 1px solid rgba(55, 65, 81, 0.8);
+  padding: 0.4rem 0.5rem;
+  text-align: left;
+}
+
+#assignmentsTable th {
+  background: rgba(17, 24, 39, 0.9);
+}
+
+.badge-missing {
+  color: #fecaca;
+}
+
+.badge-upcoming {
+  color: #bbf7d0;
+}
+
+.badge-late {
+  color: #fed7aa;
+}
+
+.footer {
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Syllabus → Smart Study Planner (Gemini)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <h1>Syllabus → Smart Study Planner</h1>
+      <p>Gemini-powered planner + Missing Assignment Tracker</p>
+      <p class="tagline">Built at CSHub Local Hack Day 2025 · Powered by Google Gemini</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="tabs">
+      <button class="tab-button active" data-tab="planner">Study Planner</button>
+      <button class="tab-button" data-tab="tracker">Missing Assignment Tracker</button>
+    </nav>
+
+    <!-- Study Planner Tab -->
+    <section id="planner" class="tab active">
+      <h2>1. Upload Syllabus & Personalize Plan</h2>
+
+      <form id="syllabusForm" class="card">
+        <h3>Step 1 — Syllabus</h3>
+        <p>Upload a PDF <strong>or</strong> paste the syllabus text.</p>
+
+        <label class="field">
+          <span>Syllabus PDF</span>
+          <input type="file" id="syllabusFile" name="syllabus" accept="application/pdf" />
+        </label>
+
+        <label class="field">
+          <span>Or paste syllabus text</span>
+          <textarea id="syllabusText" rows="6" placeholder="Paste your syllabus here..."></textarea>
+        </label>
+
+        <h3>Step 2 — Your Study Profile</h3>
+
+        <div class="grid-2">
+          <label class="field">
+            <span>Semester start date</span>
+            <input type="date" id="startDate" required />
+          </label>
+
+          <label class="field">
+            <span>Final exam date</span>
+            <input type="date" id="examDate" required />
+          </label>
+        </div>
+
+        <div class="grid-2">
+          <label class="field">
+            <span>Hours per week you can study</span>
+            <input type="number" id="hoursPerWeek" min="1" max="80" value="6" />
+          </label>
+
+          <label class="field">
+            <span>Difficulty mode</span>
+            <select id="difficulty">
+              <option value="beginner">Beginner</option>
+              <option value="normal" selected>Normal</option>
+              <option value="hardcore">Hardcore</option>
+            </select>
+          </label>
+        </div>
+
+        <button type="submit" class="primary-btn">
+          🔮 Generate smart plan with Gemini
+        </button>
+
+        <p id="plannerStatus" class="status"></p>
+      </form>
+
+      <section class="card" id="syllabusSummary">
+        <h3>Extracted Syllabus</h3>
+        <pre id="syllabusJson" class="pre-json">No syllabus parsed yet.</pre>
+      </section>
+
+      <section class="card" id="planSection">
+        <h3>Weekly Study Plan</h3>
+        <div id="planWeeks" class="weeks-grid"></div>
+      </section>
+
+      <section class="card">
+        <h3>Generate Practice Questions / Flashcards</h3>
+        <div class="grid-2">
+          <label class="field">
+            <span>Topic</span>
+            <input type="text" id="topicInput" placeholder="e.g. SQL joins, recursion, Big-O" />
+          </label>
+          <label class="field">
+            <span>Difficulty</span>
+            <select id="topicDifficulty">
+              <option value="beginner">Beginner</option>
+              <option value="normal" selected>Normal</option>
+              <option value="hardcore">Hardcore</option>
+            </select>
+          </label>
+        </div>
+        <button id="generateQuestionsBtn" class="secondary-btn">
+          🧠 Generate practice with Gemini
+        </button>
+        <p id="questionsStatus" class="status"></p>
+
+        <div class="qa-layout">
+          <div>
+            <h4>Questions</h4>
+            <ul id="questionsList"></ul>
+          </div>
+          <div>
+            <h4>Flashcards</h4>
+            <ul id="flashcardsList"></ul>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Missing Assignment Tracker Tab -->
+    <section id="tracker" class="tab">
+      <h2>Missing Assignment Tracker</h2>
+      <form id="trackerForm" class="card">
+        <p>Paste gradebook / syllabus / to-do text and let Gemini find what you're missing.</p>
+
+        <label class="field">
+          <span>Raw text (e.g. copy from eClass / Moodle / Canvas)</span>
+          <textarea id="trackerRawText" rows="8"
+            placeholder="Course: EECS 2101
+A1 (10%) – 8/10
+A2 (15%) – 0/15
+Lab 1 (2%) – not submitted
+Lab 2 (2%) – 2/2
+Midterm (20%) – upcoming Nov 30"></textarea>
+        </label>
+
+        <label class="field">
+          <span>Hours you have today (optional)</span>
+          <input type="number" id="hoursToday" min="1" max="24" value="3" />
+        </label>
+
+        <button type="submit" class="primary-btn">
+          🚨 Analyze missing / at-risk assignments
+        </button>
+
+        <p id="trackerStatus" class="status"></p>
+      </form>
+
+      <section class="card">
+        <h3>Summary</h3>
+        <p id="trackerSummary">No analysis yet.</p>
+      </section>
+
+      <section class="card">
+        <h3>Assignments</h3>
+        <table id="assignmentsTable">
+          <thead>
+            <tr>
+              <th>Course</th>
+              <th>Assignment</th>
+              <th>Status</th>
+              <th>Weight</th>
+              <th>Due</th>
+              <th>Priority</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h3>Today’s Focus (What to do first)</h3>
+        <ul id="todayFocusList"></ul>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Built with ❤️ at CSHub Local Hack Day 2025 · Gemini 2.5 Flash API</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
